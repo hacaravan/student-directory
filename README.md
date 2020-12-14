@@ -4,6 +4,6 @@ This script allows you to manage the students enrolled at the 'Villains Universi
 
 ## How to use ##
 
-```
+```shell
    ruby directory.rb
 ```
