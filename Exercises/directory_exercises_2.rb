@@ -1,4 +1,5 @@
-
+# Enter a list of students and an optional starting letter, then return the
+# students from the list whose names start with the letter (if given)
 def input_students
   puts "Please enter the name of the students"
   puts "To finish, just hit return twice"

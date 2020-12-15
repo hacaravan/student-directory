@@ -1,4 +1,5 @@
-# Enter a list of students, and then return this as a numbered list
+# Enter a list of students, and then return a list of all those whose name is
+# shorter than 12 characters
 
 def input_students
   puts "Please enter the name of the students"
@@ -21,8 +22,8 @@ def print_header
 end
 
 def print_names(students)
-  students.each_with_index do |student, index|
-    puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
+  students.each do |student|
+    puts "#{student[:name]} (#{student[:cohort]} cohort)"
   end
 end
 
