@@ -27,11 +27,18 @@ def print_names(students)
   end
 end
 
-def print_footer(students)
-  puts "Overall, we have #{students.count} great students"
+def print_footer(students, filtered_students, max_length)
+  puts "Overall, we have #{students.length} great students"
+  puts "Of these, #{filtered_students.length} have a name with less than #{max_length} characters"
 end
 
+def filter_names_by_length(students, max_length)
+  students.select{ |student| student[:name].length <= max_length }
+end
+
+max_length = 12
 students = input_students
+filtered_students = filter_names_by_length(students, max_length)
 print_header
-print_names(students)
-print_footer(students)
+print_names(filtered_students)
+print_footer(students, filtered_students, max_length)
