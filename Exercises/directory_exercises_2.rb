@@ -14,6 +14,15 @@ def input_students
   students
 end
 
+def get_letter
+  while true do
+    puts "Please enter a single letter, or press enter to ignore"
+    letter = gets.chomp
+    return letter if letter.length == 1
+    return nil if letter.empty?
+  end
+end
+
 def print_header
   puts "The students of Villains Academy"
   puts "-------------------"
@@ -28,8 +37,10 @@ end
 def print_footer(students)
   puts "Overall, we have #{students.count} great students"
 end
+let = get_letter
+puts let == nil ? "No letter given" : let
 
-students = input_students
-print_header
-print_names(students)
-print_footer(students)
+# students = input_students
+# print_header
+# print_names(students)
+# print_footer(students)
