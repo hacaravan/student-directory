@@ -8,7 +8,7 @@ def input_students
   name = gets.chomp
   while !name.empty? do
     students << {name: name, cohort: :november}
-    puts "Now we have #{students.count} students"
+    puts "Now we have #{students.length} student#{students.length == 1 ? "" : "s"}"
     name = gets.chomp
   end
   students
@@ -26,7 +26,7 @@ def print_names(students)
 end
 
 def print_footer(students)
-  puts "Overall, we have #{students.count} great students"
+  puts "Overall, we have #{students.count} great student#{students.length == 1 ? "" : "s"}"
 end
 
 students = input_students
