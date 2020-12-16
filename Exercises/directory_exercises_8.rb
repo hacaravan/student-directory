@@ -36,8 +36,9 @@ def print_header
 end
 
 def print_names(grouped_students)
-  grouped_students.each do |cohort|
-
+  grouped_students.each do |cohort, students|
+    print "#{cohort.to_s}: "
+    puts students.join(", ")
   end
 end
 
@@ -48,7 +49,7 @@ def group_students_by_chort(students)
     cohort_students = students.select{ |student| student[:cohort] == cohort}
     grouped_students[cohort] = cohort_students.map { |student| student[:name]}
   end
-  p grouped_students
+  grouped_students
 end
 
 def print_footer(students)
@@ -56,7 +57,6 @@ def print_footer(students)
 end
 
 students = input_students
-group_students_by_chort(students)
-# print_header
-# print_names(students)
-# print_footer(students)
+print_header
+print_names(group_students_by_chort(students))
+print_footer(students)
