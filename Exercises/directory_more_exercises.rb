@@ -1,5 +1,6 @@
 # Exercise 1 - added add_student method to avoid repeating code
 # Exercise 2 - load students.csv by default if no file is given on start up
+require "CSV"
 
 @students = []
 @default_file = "students.csv"
@@ -97,22 +98,18 @@ def interactive_menu
 end
 
 def save_students
-  File.open(get_file_name, "w") do |file|
+  CSV.open(get_file_name, "w") do |file|
     @students.each do |student|
-      student_data = [student[:name], student[:cohort]]
-      csv_line = student_data.join(",")
-      file.puts csv_line
+      file << [student[:name], student[:cohort]]
     end
   end
 end
 
 def load_students(file_name = @default_file)
   @students.clear
-  File.open(file_name, "r") do |file|
-    file.readlines.each do |line|
-      name, cohort = line.chomp.split(",")
-      add_student(name, cohort.to_sym)
-    end
+  CSV.foreach(file_name) do |line|
+    name, cohort = line
+    add_student(name, cohort.to_sym)
   end
 end
 
