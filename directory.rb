@@ -30,13 +30,32 @@ def print_footer(students)
 end
 
 def interactive_menu
-# 1. Print the menu and ask the user what they want to do
-# 2. Take the input from the user and save it as a variable
-# 3. Do what the user has asked us to do
-# 4. Start again from step 1
+  students = []
+  loop do
+    # 1. Print the menu and ask the user what they want to do
+    puts "1. Input the students"
+    puts "2. Show the students"
+    puts "9. Exit"
+    # 2. Take the input from the user and save it as a variable
+    selection = gets.chomp
+    # 3. Do what the user has asked us to do
+    case selection
+    when "1" then
+      students = input_students
+    when "2" then
+      print_header
+      print_names(students)
+      print_footer(students)
+    when "9" then
+      exit
+    else
+      puts "I didn't catch that, please try again"
+    end
+  end
 end
 
-students = input_students
-print_header
-print_names(students)
-print_footer(students)
+interactive_menu
+# students = input_students
+# print_header
+# print_names(students)
+# print_footer(students)
