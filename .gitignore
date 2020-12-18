@@ -2,3 +2,5 @@
 students.csv
 # Ignoring new student list
 new_student_list.csv
+#Ignore newer student list
+newer_student_list.csv
