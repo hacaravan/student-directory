@@ -3,6 +3,9 @@
 
 @students = []
 @default_file = "students.csv"
+@options_hash = {"1" => "Input students", "2" => "Show students",
+                "3" => "Save student list to #{@default_file}",
+                "4" => "Load student list from #{@default_file}", "9" => "Exit"}
 
 def get_cohort
   valid_cohorts = [:january ,:february ,:march ,:april ,:may ,:june ,:july,
@@ -49,10 +52,8 @@ def print_footer
 end
 
 def print_menu
-  options_hash = {1 => "Input the students", 2 => "Show the students",
-                  3 => "Save student list to #{@default_file}",
-                  4 => "Load student list from #{@default_file}", 9 => "Exit"}
-  options_hash.each {|number, action| puts "#{number}. #{action}"}
+  puts "\nChoose an option to do it:"
+  @options_hash.each {|number, action| puts "#{number}. #{action}"}
 end
 
 def show_students
@@ -62,14 +63,16 @@ def show_students
 end
 
 def process(selection)
-  case selection
-  when "1" then input_students
-  when "2" then show_students
-  when "3" then save_students
-  when "4" then load_students
-  when "9" then exit
+  if !@options_hash.keys.include? selection then puts "I didn't catch that, please try again"
   else
-    puts "I didn't catch that, please try again"
+    case selection
+    when "1" then input_students
+    when "2" then show_students
+    when "3" then save_students
+    when "4" then load_students
+    when "9" then exit
+    end
+    puts "You successfully did option #{selection} - #{@options_hash[selection]}"
   end
 end
 
