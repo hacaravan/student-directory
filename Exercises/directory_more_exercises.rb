@@ -74,7 +74,7 @@ def process(selection)
     when "1" then input_students
     when "2" then show_students
     when "3" then save_students
-    when "4" then load_students
+    when "4" then load_students(get_file_name)
     when "9" then exit
     end
     puts "You successfully did option #{selection} - #{@options_hash[selection]}"
@@ -89,7 +89,7 @@ def interactive_menu
 end
 
 def save_students
-  file = File.open(@default_file, "w")
+  file = File.open(get_file_name, "w")
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
     csv_line = student_data.join(",")
