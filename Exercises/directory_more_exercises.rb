@@ -97,23 +97,23 @@ def interactive_menu
 end
 
 def save_students
-  file = File.open(get_file_name, "w")
-  @students.each do |student|
-    student_data = [student[:name], student[:cohort]]
-    csv_line = student_data.join(",")
-    file.puts csv_line
+  File.open(get_file_name, "w") do |file|
+    @students.each do |student|
+      student_data = [student[:name], student[:cohort]]
+      csv_line = student_data.join(",")
+      file.puts csv_line
+    end
   end
-  file.close
 end
 
 def load_students(file_name = @default_file)
   @students.clear
-  file = File.open(file_name, "r")
-  file.readlines.each do |line|
-    name, cohort = line.chomp.split(",")
-    add_student(name, cohort.to_sym)
+  File.open(file_name, "r") do |file|
+    file.readlines.each do |line|
+      name, cohort = line.chomp.split(",")
+      add_student(name, cohort.to_sym)
+    end
   end
-  file.close
 end
 
 def startup_load_students
