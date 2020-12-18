@@ -1,6 +1,18 @@
 
 @students = []
 
+
+def get_cohort
+  valid_cohorts = [:january ,:february ,:march ,:april ,:may ,:june ,:july,
+                  :august ,:september ,:october ,:november ,:december]
+  cohort = ""
+  while !valid_cohorts.include?(cohort)
+    puts "What cohort is this student in?"
+    cohort = STDIN.gets.chomp.downcase.to_sym
+  end
+  cohort
+end
+
 def input_students
   puts "Please enter the name of the students"
   puts "To finish, just hit return twice"
