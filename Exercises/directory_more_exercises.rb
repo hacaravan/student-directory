@@ -2,6 +2,7 @@
 # Exercise 2 - load students.csv by default if no file is given on start up
 
 @students = []
+@default_file = "students.csv"
 
 def get_cohort
   valid_cohorts = [:january ,:february ,:march ,:april ,:may ,:june ,:july,
@@ -23,8 +24,8 @@ def input_students
   puts "To finish, just hit return twice"
   # get first name
   name = STDIN.gets.chomp
-  cohort = get_cohort
   while !name.empty? do
+    cohort = get_cohort
     add_student(name, cohort)
     puts "Now we have #{@students.count} students"
     name = STDIN.gets.chomp
@@ -48,11 +49,10 @@ def print_footer
 end
 
 def print_menu
-  puts "1. Input the students"
-  puts "2. Show the students"
-  puts "3. Save student list to students.csv"
-  puts "4. Load student list from students.csv"
-  puts "9. Exit"
+  options_hash = {1 => "Input the students", 2 => "Show the students",
+                  3 => "Save student list to #{@default_file}",
+                  4 => "Load student list from #{@default_file}", 9 => "Exit"}
+  options_hash.each {|number, action| puts "#{number}. #{action}"}
 end
 
 def show_students
@@ -81,7 +81,7 @@ def interactive_menu
 end
 
 def save_students
-  file = File.open("students.csv", "w")
+  file = File.open(@default_file, "w")
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
     csv_line = student_data.join(",")
@@ -90,7 +90,7 @@ def save_students
   file.close
 end
 
-def load_students(file_name = "students.csv")
+def load_students(file_name = @default_file)
   file = File.open(file_name, "r")
   file.readlines.each do |line|
     name, cohort = line.chomp.split(",")
