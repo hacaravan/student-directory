@@ -1,3 +1,5 @@
+# Exercise 1 - added add_student method to avoid repeating code
+# Exercise 2 - load students.csv by default if no file is given on start up
 
 @students = []
 
@@ -30,7 +32,7 @@ def input_students
 end
 
 def print_header
-  puts "The students of Villains Academy"
+  puts "\nThe students of Villains Academy"
   puts "-------------------"
 end
 
@@ -38,10 +40,11 @@ def print_student_list
   @students.each do |student|
     puts "#{student[:name]} (#{student[:cohort]} cohort)"
   end
+  puts
 end
 
 def print_footer
-  puts "Overall, we have #{@students.count} great students"
+  puts "Overall, we have #{@students.count} great students\n"
 end
 
 def print_menu
@@ -96,10 +99,11 @@ def load_students(file_name = "students.csv")
   file.close
 end
 
-def try_load_students
+def startup_load_students
   file_name = ARGV.first
-  return if file_name.nil?
-  if File.exists?(file_name)
+  if file_name.nil?
+    load_students
+  elsif File.exists?(file_name)
     load_students(file_name)
     puts "Loaded #{@students.length} from #{file_name}"
   else
@@ -108,5 +112,5 @@ def try_load_students
   end
 end
 
-try_load_students
+startup_load_students
 interactive_menu
