@@ -29,6 +29,13 @@ def print_footer(students)
   puts "Overall, we have #{students.count} great students"
 end
 
+def interactive_menu
+# 1. Print the menu and ask the user what they want to do
+# 2. Take the input from the user and save it as a variable
+# 3. Do what the user has asked us to do
+# 4. Start again from step 1
+end
+
 students = input_students
 print_header
 print_names(students)
