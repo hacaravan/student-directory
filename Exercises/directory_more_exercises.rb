@@ -4,8 +4,8 @@
 @students = []
 @default_file = "students.csv"
 @options_hash = {"1" => "Input students", "2" => "Show students",
-                "3" => "Save student list to #{@default_file}",
-                "4" => "Load student list from #{@default_file}", "9" => "Exit"}
+                "3" => "Save student list",
+                "4" => "Load student list", "9" => "Exit"}
 
 def get_cohort
   valid_cohorts = [:january ,:february ,:march ,:april ,:may ,:june ,:july,
@@ -49,6 +49,11 @@ end
 
 def print_footer
   puts "Overall, we have #{@students.count} great students\n"
+end
+
+def get_file_name
+  puts "Please enter the file name you would like to use"
+  gets.chomp
 end
 
 def print_menu
@@ -114,6 +119,7 @@ def startup_load_students
     exit
   end
 end
+
 
 startup_load_students
 interactive_menu
