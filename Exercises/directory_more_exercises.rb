@@ -18,8 +18,9 @@ def input_students
   puts "To finish, just hit return twice"
   # get first name
   name = STDIN.gets.chomp
+  cohort = get_cohort
   while !name.empty? do
-    @students << {name: name, cohort: :november}
+    @students << {name: name, cohort: cohort}
     puts "Now we have #{@students.count} students"
     name = STDIN.gets.chomp
   end
