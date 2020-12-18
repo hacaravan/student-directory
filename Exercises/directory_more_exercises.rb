@@ -99,6 +99,7 @@ def save_students
 end
 
 def load_students(file_name = @default_file)
+  @students.clear
   file = File.open(file_name, "r")
   file.readlines.each do |line|
     name, cohort = line.chomp.split(",")
