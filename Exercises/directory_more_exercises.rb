@@ -1,7 +1,6 @@
 
 @students = []
 
-
 def get_cohort
   valid_cohorts = [:january ,:february ,:march ,:april ,:may ,:june ,:july,
                   :august ,:september ,:october ,:november ,:december]
@@ -13,6 +12,10 @@ def get_cohort
   cohort
 end
 
+def add_student(name, cohort)
+  @students << {name: name, cohort: cohort}
+end
+
 def input_students
   puts "Please enter the name of the students"
   puts "To finish, just hit return twice"
@@ -20,7 +23,7 @@ def input_students
   name = STDIN.gets.chomp
   cohort = get_cohort
   while !name.empty? do
-    @students << {name: name, cohort: cohort}
+    add_student(name, cohort)
     puts "Now we have #{@students.count} students"
     name = STDIN.gets.chomp
   end
@@ -88,7 +91,7 @@ def load_students(file_name = "students.csv")
   file = File.open(file_name, "r")
   file.readlines.each do |line|
     name, cohort = line.chomp.split(",")
-    @students << {name: name, cohort: cohort.to_sym}
+    add_student(name, cohort.to_sym)
   end
   file.close
 end
